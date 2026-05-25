@@ -1,7 +1,7 @@
 # Web Dev Hub
 
 一個基於 Nuxt 3 構建的技術筆記系統，整合 Cloud Firestore 作為後端儲存，並導入 Google Gemini API 實現多模態技術除錯與內容自動優化。
-
+https://web-dev-hub-seven.vercel.app/
 ## Tech Stack
 
 - Framework: Nuxt 3 (Vue 3 Composition API)
