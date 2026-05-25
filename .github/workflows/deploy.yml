@@ -1,0 +1,35 @@
+name: Build and Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # 當 main 分支收到 Push 時，自動啟動雲端編譯
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Generate Static Production Site
+        run: npm run generate
+
+      - name: Deploy to GitHub Pages Branch (gh-pages)
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: .output/public # Nuxt 預設靜態導出目錄
+          branch: gh-pages # 雲端會自動推送到這個分支進行網頁託管
+          clean: true
